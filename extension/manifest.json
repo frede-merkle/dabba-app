@@ -1,0 +1,11 @@
+{
+  "name": "Merkle Lunch App",
+  "description": "Base Level Extension",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": ["storage", "activeTab"],
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "default_icon.png"
+  }
+}
