@@ -1,5 +1,6 @@
 html {
   width: 800px;
+  height: 400px;
 }
 
 body {
@@ -7,7 +8,7 @@ body {
   margin: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center everything except the table */
+  align-items: center;
   text-align: center;
 }
 
@@ -16,12 +17,12 @@ body {
   top: 10px;
   right: 10px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
   color: #007bff;
 }
 
 #username-display:hover {
-  text-decoration: underline; /* Add underline on hover */
+  text-decoration: underline;
 }
 
 #description {
@@ -32,7 +33,7 @@ body {
   border: 1px solid #ddd;
   max-width: 600px;
   margin: 20px auto;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.6;
   color: #333;
   text-align: left;
@@ -44,29 +45,26 @@ body {
 }
 
 #description strong {
-  color: #007BFF;
+  color: #0a1540;
 }
 
-#description a {
-  color: #007BFF;
-  text-decoration: none;
+#disclaimer {
+  font-size: 12px;
+  color: #333;
+  margin-top: 32px;
+  margin-bottom: 12px;
 }
-
-#description a:hover {
-  text-decoration: underline;
-}
-
 
 /* Input and Button Styling */
 input, button {
-  font-size: 16px;
+  font-size: 14px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
 button {
-  background-color: #007BFF;
+  background-color: #19244f;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -78,12 +76,12 @@ button:hover {
 
 /* Table Styling */
 table {
+  font-size: 14px;
   margin-top: 20px;
   width: 100%;
   max-width: 800px;
   border-collapse: collapse;
   border: 1px solid #ddd;
-  border-radius: 8px;
   display: none;
 }
 
@@ -98,8 +96,20 @@ th, td {
 }
 
 th {
-  background-color: #007BFF;
+  background-color: #19244f;
   color: white;
+}
+
+th:nth-child(2), td:nth-child(2) {
+  width: 200px;
+}
+
+th:nth-child(3), td:nth-child(3) {
+  width: 150px;
+}
+
+th:nth-child(4), td:nth-child(4) {
+  width: 50px;
 }
 
 td {
@@ -111,7 +121,7 @@ td#order {
 }
 
 table tbody tr {
-  height: 60px;
+  height: 80px;
 }
 
 tr:nth-child(even) {
@@ -120,15 +130,4 @@ tr:nth-child(even) {
 
 tr:hover {
   background-color: #f1f1f1;
-}
-
-/* Responsive Table */
-@media (max-width: 600px) {
-  table {
-    font-size: 14px; /* Smaller font for smaller screens */
-  }
-
-  th, td {
-    padding: 8px;
-  }
 }
