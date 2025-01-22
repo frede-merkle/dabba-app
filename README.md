@@ -2,11 +2,11 @@
 
 ## Introduction
 This extension was developed to solve a common problem in our office:
-managing lunch orders when colleagues are out of office (OOF).
+managing lunch orders when colleagues are out of office (OOO).
 This extension allows people to:
 
 - Mark colleagues as out of office
-- See what lunch orders are available from OOF colleagues
+- See what lunch orders are available from OOO colleagues
 - Claim available lunches
 - Keep track of who has taken which lunch
 
@@ -33,9 +33,9 @@ The extension icon should now appear in your Chrome toolbar.
     - You can change your name later by clicking your name in the top right
     - It is saved as a cookie (30-days expiration)
 
-#### Marking Someone as OOF
+#### Marking Someone as OOO
 1. Use the search field to find the person's name
-2. Click "Mark as OOF" to add them to the list
+2. Click "Mark as OOO" to add them to the list
     - Their pre-ordered lunch will automatically appear in the table
 
 #### Claiming a Lunch
@@ -45,11 +45,11 @@ The extension icon should now appear in your Chrome toolbar.
     - Once claimed, other users will see that you've taken this lunch
 4. This CANNOT be undone
 
-#### Removing Someone from OOF List
+#### Removing Someone from OOO List
 1. Find the person in the table
 2. Click the ❌ icon to remove them
     - Only do this if they're actually back in office
-    - If someone already claimed their lunch, tell them the person is not OOF
+    - If someone already claimed their lunch, tell them the person is not OOO
 
 ## Development
 
