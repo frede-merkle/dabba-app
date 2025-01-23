@@ -9,7 +9,7 @@ const mainContent = document.getElementById('main-content');
 const errorMessage = document.getElementById('errorMessage');
 const usernameDisplay = document.getElementById('username-display');
 const currentUserElement = document.getElementById('current-username');
-const merklePeople = ['agustin', 'anastasia b.', 'bardur s.', 'catarina j.', 'dan t.', "daria s.", 'denitsa z.', "erik p.", "frederik g.", "frederik h.", "frederik j.", "ida o.", "joseph l.", "natalia s.", "nikolai p.", "peter a.", "rasmusoevlesen", "søren l. s.", "ulrik k. h.", "william"];
+const merklePeople = ['agustin', 'anastasia b.', 'bardur s.', 'benjamin m.', 'catarina j.', 'dan t.', "daria s.", 'denitsa z.', "elisa a.", "erik p.", "frederik g.", "frederik h.", "frederik j.", "ida o.", "joseph l.", "kasper t.", "kristoffer l.", "line l.", "natalia p.", "natalia s.", "nikolai p.", "peter a.", "rafa", "rasmusoevlesen", "søren l. s.", "ulrik k. h.", "william"];
 const nameInput = document.getElementById('nameInput');
 const submitButton = document.getElementById('submitButton');
 
