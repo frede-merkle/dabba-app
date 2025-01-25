@@ -121,8 +121,17 @@ function parseJson(data: string): Order[] {
     "håndmadder"
   ]
   const possibleOrdersRegex = new RegExp(`(${menuTypes.join("|")})`, "g")
-  const ordersWithoutAmount = orders.replaceAll("1x ", "")
-  const namesAndMenus = ordersWithoutAmount
+
+  const ordersWithoutAmount = orders
+    .replaceAll(/\d+x /g, "")
+
+  const ordersWithoutExtraOrders = ordersWithoutAmount
+    .replaceAll("abonnement", "")
+    .replaceAll("surdejsbrød", "")
+    .replaceAll("friskbagt", "")
+    .replaceAll("rugbrød", "")
+
+  const namesAndMenus = ordersWithoutExtraOrders
     .split(possibleOrdersRegex)
     .filter(e => e !== undefined && e !== "")
     .map(e => e.trim())
@@ -136,7 +145,8 @@ function parseJson(data: string): Order[] {
 
     if (name.startsWith(",")) name = name.substring(2) // Some names start with ", "
     if (!listOfMenus.some(e => e.name === name)) {
-      listOfMenus.push({name: name, menu: menu})
+      const cleanName = name.replaceAll("admin ", "") // Some names includes "admin "
+      listOfMenus.push({name: cleanName, menu: menu})
     }
   }
 
