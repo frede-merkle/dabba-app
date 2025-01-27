@@ -5,3 +5,4 @@
 /dataSources.local.xml
 
 .idea
+/scripts/node_modules
