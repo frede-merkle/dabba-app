@@ -1,0 +1,647 @@
+[
+  {
+    "company": "Merkle",
+    "name": "Agustin Pequeno",
+    "dabba_name": "agustin"
+  },
+  {
+    "company": "carat",
+    "name": "Alberte Nørgaard",
+    "dabba_name": "alberte m. n. h."
+  },
+  {
+    "company": "amplify",
+    "name": "Alexander Simonsen",
+    "dabba_name": "alexander s."
+  },
+  {
+    "company": "iProspect",
+    "name": "Amélie Delamare",
+    "dabba_name": "amélie d."
+  },
+  {
+    "company": "dentsu X",
+    "name": "Amalie Toftgaard",
+    "dabba_name": "amalie t."
+  },
+  {
+    "company": "iProspect",
+    "name": "Amanda Bundgaard Larsen",
+    "dabba_name": "amanda b. l."
+  },
+  {
+    "company": "Merkle",
+    "name": "Anastasia Bunduc",
+    "dabba_name": "anastasia b."
+  },
+  {
+    "company": "iProspect",
+    "name": "Anders Pedersen",
+    "dabba_name": "anders p."
+  },
+  {
+    "company": "amplify",
+    "name": "Andreas Dam",
+    "dabba_name": "andreas d."
+  },
+  {
+    "company": "SSO",
+    "name": "Anne K. Devantier",
+    "dabba_name": "anne d."
+  },
+  {
+    "company": "carat",
+    "name": "Anne Mathilde Hansen",
+    "dabba_name": null
+  },
+  {
+    "company": "carat",
+    "name": "Annette Ravnsbæk",
+    "dabba_name": "annette r."
+  },
+  {
+    "company": "SSO",
+    "name": "Asbjørn Lind",
+    "dabba_name": "asbjørn l."
+  },
+  {
+    "company": "Merkle",
+    "name": "Bardur Simonsen",
+    "dabba_name": "bardur s."
+  },
+  {
+    "company": "Merkle",
+    "name": "Benjamin Marzecki",
+    "dabba_name": "benjamin m."
+  },
+  {
+    "company": "dentsu X",
+    "name": "Bjarke Nordestgaard Petersen",
+    "dabba_name": "bjarke p."
+  },
+  {
+    "company": "amplify",
+    "name": "Bo Martin",
+    "dabba_name": "bo t."
+  },
+  {
+    "company": "carat",
+    "name": "Caroline Bang",
+    "dabba_name": "caroline b."
+  },
+  {
+    "company": "iProspect",
+    "name": "Casper Andreasen",
+    "dabba_name": "casper a."
+  },
+  {
+    "company": "Merkle",
+    "name": "Catarina Quintela de Jsesu",
+    "dabba_name": "catarina j."
+  },
+  {
+    "company": "dentsu",
+    "name": "Cecilia Jonasson",
+    "dabba_name": "cecilia j."
+  },
+  {
+    "company": "carat",
+    "name": "Celine Borum",
+    "dabba_name": "celine b."
+  },
+  {
+    "company": "dentsu",
+    "name": "Charlotte Lienhøft",
+    "dabba_name": null
+  },
+  {
+    "company": "dentsu X",
+    "name": "Charlotte Linck",
+    "dabba_name": null
+  },
+  {
+    "company": "amplify",
+    "name": "Christoffer Vorm",
+    "dabba_name": "christoffer v."
+  },
+  {
+    "company": "iProspect",
+    "name": "Clara Bomholt Sørense",
+    "dabba_name": "clara s."
+  },
+  {
+    "company": "amplify",
+    "name": "Clement Damgaard",
+    "dabba_name": null
+  },
+  {
+    "company": "Merkle",
+    "name": "Dan Turcan",
+    "dabba_name": "dan t."
+  },
+  {
+    "company": "dentsu X",
+    "name": "Daniel Nielsen",
+    "dabba_name": "daniel n."
+  },
+  {
+    "company": "iProspect",
+    "name": "Daniel Sivertsen",
+    "dabba_name": "daniel s."
+  },
+  {
+    "company": "Merkle",
+    "name": "Daria Strelnikova",
+    "dabba_name": "daria s."
+  },
+  {
+    "company": "Merkle",
+    "name": "Denitsa Zhekova",
+    "dabba_name": "denitsa z."
+  },
+  {
+    "company": "carat",
+    "name": "Ditte Sohn",
+    "dabba_name": "ditte m."
+  },
+  {
+    "company": "Merkle",
+    "name": "Elisa Amonti",
+    "dabba_name": "elisa a."
+  },
+  {
+    "company": "carat",
+    "name": "Emilie Frederikke Bøgh",
+    "dabba_name": "emilie b. j."
+  },
+  {
+    "company": "dentsu X",
+    "name": "Emilie Kusk Nielsen",
+    "dabba_name": "emilie k. n."
+  },
+  {
+    "company": "iProspect",
+    "name": "Emilie Nordfelt West",
+    "dabba_name": "emilie w."
+  },
+  {
+    "company": "iProspect",
+    "name": "Emre Nedzhib",
+    "dabba_name": "emre n."
+  },
+  {
+    "company": "Merkle",
+    "name": "Erik Pørksen",
+    "dabba_name": "erik p."
+  },
+  {
+    "company": "iProspect",
+    "name": "Flemming Kaasgaard",
+    "dabba_name": "flemming k."
+  },
+  {
+    "company": "Merkle",
+    "name": "Frederik Grummesgaard",
+    "dabba_name": "frederik g."
+  },
+  {
+    "company": "Merkle",
+    "name": "Frederik Hjortebjerg",
+    "dabba_name": "frederik h."
+  },
+  {
+    "company": "Merkle",
+    "name": "Frederik Jørgensen",
+    "dabba_name": "frederik j."
+  },
+  {
+    "company": "SSO",
+    "name": "Frederikke Trosborg",
+    "dabba_name": "frederikke t."
+  },
+  {
+    "company": "iProspect",
+    "name": "Giang Troung Pham",
+    "dabba_name": "giang"
+  },
+  {
+    "company": "carat",
+    "name": "Gitta Steffensen",
+    "dabba_name": "gitta s."
+  },
+  {
+    "company": "iProspect",
+    "name": "Helene Klaustrup",
+    "dabba_name": "helene s. k."
+  },
+  {
+    "company": "dentsu",
+    "name": "Ida Aalykke Kragelund",
+    "dabba_name": null
+  },
+  {
+    "company": "carat",
+    "name": "Ida Hertz",
+    "dabba_name": "ida"
+  },
+  {
+    "company": "iProspect",
+    "name": "Ida Kruse Rasmussen",
+    "dabba_name": null
+  },
+  {
+    "company": "carat",
+    "name": "Jesper Møller",
+    "dabba_name": "jesper m."
+  },
+  {
+    "company": "iProspect",
+    "name": "Johanne Emmertsen",
+    "dabba_name": "johanne e."
+  },
+  {
+    "company": "SSO",
+    "name": "Johanne La Cour",
+    "dabba_name": "johanne l. c."
+  },
+  {
+    "company": "dentsu X",
+    "name": "Jonas Kirkegaard",
+    "dabba_name": "jonas k."
+  },
+  {
+    "company": "amplify",
+    "name": "Jonas Møller Gruhn",
+    "dabba_name": "jonas m. g."
+  },
+  {
+    "company": "Merkle",
+    "name": "Joseph Larner",
+    "dabba_name": "joseph l."
+  },
+  {
+    "company": "dentsu",
+    "name": "Julia Sophia Bødker Christensen",
+    "dabba_name": null
+  },
+  {
+    "company": "SSO",
+    "name": "Julie Daugaard",
+    "dabba_name": "julie d."
+  },
+  {
+    "company": "Merkle",
+    "name": "Kasper Bang Tonsgaard",
+    "dabba_name": null
+  },
+  {
+    "company": "iProspect",
+    "name": "Kasper Mathiesen",
+    "dabba_name": "kasper m."
+  },
+  {
+    "company": "carat",
+    "name": "Kathrine Kjeldgaard",
+    "dabba_name": "kathrine k."
+  },
+  {
+    "company": "dentsu X",
+    "name": "Katrine Lassen",
+    "dabba_name": null
+  },
+  {
+    "company": "amplify",
+    "name": "Kristian Hindø",
+    "dabba_name": "kristian h."
+  },
+  {
+    "company": "dentsu",
+    "name": "Kristina Kobbelgard",
+    "dabba_name": "kristina.kobbelgaard@dentsu.com"
+  },
+  {
+    "company": "Merkle",
+    "name": "Kristoffer Lippert",
+    "dabba_name": null
+  },
+  {
+    "company": "amplify",
+    "name": "Lars Malthe Christensen",
+    "dabba_name": "lars c."
+  },
+  {
+    "company": "iProspect",
+    "name": "Lasse Bojesen",
+    "dabba_name": "lasse b."
+  },
+  {
+    "company": "dentsu",
+    "name": "Laura Andersen",
+    "dabba_name": null
+  },
+  {
+    "company": "dentsu",
+    "name": "Laura Hove",
+    "dabba_name": "laura h."
+  },
+  {
+    "company": "carat",
+    "name": "Lea Vestergaard",
+    "dabba_name": "lea m. c. v."
+  },
+  {
+    "company": "dentsu X",
+    "name": "Lene Matthiesen",
+    "dabba_name": "lene m."
+  },
+  {
+    "company": "carat",
+    "name": "Line Hansen",
+    "dabba_name": "line"
+  },
+  {
+    "company": "Merkle",
+    "name": "Line Lindvald Hansen",
+    "dabba_name": "line l."
+  },
+  {
+    "company": "amplify",
+    "name": "Liv Attermann",
+    "dabba_name": "liv e. a."
+  },
+  {
+    "company": "dentsu X",
+    "name": "Louise Oue Laursen",
+    "dabba_name": null
+  },
+  {
+    "company": "amplify",
+    "name": "Magnus Kalsmose",
+    "dabba_name": null
+  },
+  {
+    "company": "carat",
+    "name": "Magnus Kjeldgaard",
+    "dabba_name": null
+  },
+  {
+    "company": "dentsu X",
+    "name": "Maria West",
+    "dabba_name": "maria w."
+  },
+  {
+    "company": "iProspect",
+    "name": "Mathias Larsen",
+    "dabba_name": "mathias l. l."
+  },
+  {
+    "company": "dentsu X",
+    "name": "Mathilde Østergaard",
+    "dabba_name": "mathilde ø."
+  },
+  {
+    "company": "amplify",
+    "name": "Mathilde Egholm Bendz",
+    "dabba_name": "mathilde b."
+  },
+  {
+    "company": "dentsu X",
+    "name": "Mathilde Frank",
+    "dabba_name": "mathilde.frank@dxglobal.com"
+  },
+  {
+    "company": "carat",
+    "name": "Mette Rasmussen",
+    "dabba_name": "mette r."
+  },
+  {
+    "company": "dentsu X",
+    "name": "Mia Linett Andersen",
+    "dabba_name": "mia l."
+  },
+  {
+    "company": "iProspect",
+    "name": "Mia Odsgaard",
+    "dabba_name": "mia s. o."
+  },
+  {
+    "company": "SSO",
+    "name": "Michael Johansen",
+    "dabba_name": "michael j."
+  },
+  {
+    "company": "dentsu X",
+    "name": "Michela G. Christensen",
+    "dabba_name": "michela c."
+  },
+  {
+    "company": "dentsu X",
+    "name": "Mikkel Bay",
+    "dabba_name": null
+  },
+  {
+    "company": "iProspect",
+    "name": "Mikkel Brusen Nielsen",
+    "dabba_name": null
+  },
+  {
+    "company": "amplify",
+    "name": "Mille Lindstrøm",
+    "dabba_name": null
+  },
+  {
+    "company": "iProspect",
+    "name": "Morten Nørtoft",
+    "dabba_name": "morten n."
+  },
+  {
+    "company": "carat",
+    "name": "Morten Søgaard",
+    "dabba_name": "morten s. n."
+  },
+  {
+    "company": "dentsu X",
+    "name": "Nana Kring",
+    "dabba_name": "nana k."
+  },
+  {
+    "company": "Merkle",
+    "name": "Natália Pohorelcová",
+    "dabba_name": "natalia p."
+  },
+  {
+    "company": "Merkle",
+    "name": "Natalia Sokolowska",
+    "dabba_name": "natalia s."
+  },
+  {
+    "company": "carat",
+    "name": "Nicolai Adamsen",
+    "dabba_name": "nicolai a."
+  },
+  {
+    "company": "carat",
+    "name": "Nicolai Grand Søgaard",
+    "dabba_name": null
+  },
+  {
+    "company": "Merkle",
+    "name": "Nikolai Penkev",
+    "dabba_name": "nikolai p."
+  },
+  {
+    "company": "iProspect",
+    "name": "Oliva Dalgaard Floor",
+    "dabba_name": "olivia d. f."
+  },
+  {
+    "company": "Merkle",
+    "name": "Peter Andersen",
+    "dabba_name": "peter a."
+  },
+  {
+    "company": "dentsu X",
+    "name": "Pia Schiølin",
+    "dabba_name": "pia s."
+  },
+  {
+    "company": "Merkle",
+    "name": "Rafaela Nogueira",
+    "dabba_name": "rafa"
+  },
+  {
+    "company": "Merkle",
+    "name": "Rasmus Øvlesen",
+    "dabba_name": "rasmusoevlesen"
+  },
+  {
+    "company": "amplify",
+    "name": "Rasmus Aabo Sørensen",
+    "dabba_name": "rasmus a."
+  },
+  {
+    "company": "dentsu X",
+    "name": "Rasmus Gammelgaard",
+    "dabba_name": "rasmus"
+  },
+  {
+    "company": "dentsu",
+    "name": "Raya Karim Abdulzahra",
+    "dabba_name": "raya k."
+  },
+  {
+    "company": "dentsu",
+    "name": "Regitze Gjedde",
+    "dabba_name": null
+  },
+  {
+    "company": "Merkle",
+    "name": "Søren Skuym",
+    "dabba_name": "søren l. s."
+  },
+  {
+    "company": "amplify",
+    "name": "Sami Morrah",
+    "dabba_name": "sami"
+  },
+  {
+    "company": "amplify",
+    "name": "Sarah Brigsted Sørensen",
+    "dabba_name": "sarah s."
+  },
+  {
+    "company": "Merkle",
+    "name": "Sarah Maria Teresa Wang Cant",
+    "dabba_name": "sarah c."
+  },
+  {
+    "company": "dentsu X",
+    "name": "Sebastian Stadil",
+    "dabba_name": "sebastian s. p."
+  },
+  {
+    "company": "dentsu",
+    "name": "Signe Arndal",
+    "dabba_name": null
+  },
+  {
+    "company": "amplify",
+    "name": "Signe-Marie Bøgh Andersen",
+    "dabba_name": "signe-marie b. a."
+  },
+  {
+    "company": "iProspect",
+    "name": "Simon Antonsen",
+    "dabba_name": null
+  },
+  {
+    "company": "dentsu X",
+    "name": "Simone Dreyer",
+    "dabba_name": "simone d. s."
+  },
+  {
+    "company": "amplify",
+    "name": "Sine Asmussen",
+    "dabba_name": "sine l. a."
+  },
+  {
+    "company": "dentsu X",
+    "name": "Sofie Leckband",
+    "dabba_name": null
+  },
+  {
+    "company": "dentsu X",
+    "name": "Sofie Renzius Andreasen",
+    "dabba_name": "sofie r. a."
+  },
+  {
+    "company": "Merkle",
+    "name": "Sophus Thomas Vonge Corry",
+    "dabba_name": null
+  },
+  {
+    "company": "iProspect",
+    "name": "Stephanie Husum",
+    "dabba_name": null
+  },
+  {
+    "company": "iProspect",
+    "name": "Stig Stryhn Larsen",
+    "dabba_name": "stig l."
+  },
+  {
+    "company": "dentsu X",
+    "name": "Stine Kjær Graversen",
+    "dabba_name": "stine k. g."
+  },
+  {
+    "company": "dentsu",
+    "name": "Tina Schmidt",
+    "dabba_name": null
+  },
+  {
+    "company": "amplify",
+    "name": "Trine Lindstrøm Rasmussen",
+    "dabba_name": "trine l. r."
+  },
+  {
+    "company": "Merkle",
+    "name": "Ulrik Küseler Hansen",
+    "dabba_name": "ulrik k. h."
+  },
+  {
+    "company": "dentsu",
+    "name": "Ulrik Petersen",
+    "dabba_name": "ulrik"
+  },
+  {
+    "company": "carat",
+    "name": "Vibeke Kroer",
+    "dabba_name": "vibeke"
+  },
+  {
+    "company": "Merkle",
+    "name": "Wiliam Hanby",
+    "dabba_name": "william"
+  }
+]

@@ -9,7 +9,6 @@ const mainContent = document.getElementById('main-content');
 const errorMessage = document.getElementById('errorMessage');
 const usernameDisplay = document.getElementById('username-display');
 const currentUserElement = document.getElementById('current-username');
-const merklePeople = ['agustin', 'anastasia b.', 'bardur s.', 'benjamin m.', 'catarina j.', 'dan t.', "daria s.", 'denitsa z.', "elisa a.", "erik p.", "frederik g.", "frederik h.", "frederik j.", "ida o.", "joseph l.", "kasper t.", "kristoffer l.", "line l.", "natalia p.", "natalia s.", "nikolai p.", "peter a.", "rafa", "rasmusoevlesen", "søren l. s.", "ulrik k. h.", "william"];
 const nameInput = document.getElementById('nameInput');
 const submitButton = document.getElementById('submitButton');
 
@@ -46,39 +45,32 @@ function setup() {
 }
 
 async function fetchSickPeople() {
-    const { data, error } = await supabaseClient
-        .from('orders')
-        .select('*')
-        .eq('sick', true)
-        .in('name', merklePeople);
-
-    if (error) {
-        console.error('Error fetching sick people:', error);
-        return;
-    }
+    const orders = await fetchOrders(true)
 
     clearSickTableContent();
+    const tablePlaceholder = document.getElementById("table-placeholder");
     const table = document.getElementById("sick-table");
     const tbody = table.querySelector('tbody');
-    table.style.display = (data.length === 0) ? 'none' : 'table';
+    tablePlaceholder.style.display = (orders.length === 0) ? 'block' : 'none';
+    table.style.display = (orders.length === 0) ? 'none' : 'table';
 
-    data.forEach((person) => {
+    orders.forEach(order => {
         const row = tbody.insertRow();
 
         const nameCell = row.insertCell();
-        nameCell.textContent = person.name;
+        nameCell.textContent = order.full_name;
         const orderCell = row.insertCell();
-        orderCell.textContent = `${person.menu} ${getOrderIcon(person.menu)}`;
+        orderCell.textContent = `${order.menu} ${getOrderIcon(order.menu)}`;
 
         const takenCell = row.insertCell();
-        if (person.taken) {
-            takenCell.textContent = `Taken by ${person.taken_by}`;
-            takenCell.style.color = "#888";
+        if (order.taken) {
+            takenCell.textContent = `${order.taken_by}`;
+            takenCell.className = "taken-cell"
         } else {
             const takeButton = document.createElement('button');
             const confirmationText = document.createElement('div');
             takeButton.textContent = "Take lunch";
-            takeButton.onclick = takeLunch(person, currentUserName, takeButton, confirmationText);
+            takeButton.onclick = takeLunch(order, currentUserName, takeButton, confirmationText);
             takenCell.appendChild(takeButton);
             takenCell.appendChild(confirmationText);
         }
@@ -91,7 +83,7 @@ async function fetchSickPeople() {
             const { error } = await supabaseClient
                 .from('orders')
                 .update({ sick: false })
-                .eq('name', person.name);
+                .eq('name', order.dabba_name);
 
             if (error) {
                 console.error('Error removing person from sick list:', error);
@@ -119,20 +111,28 @@ submitButton.addEventListener('click', async () => {
 setup();
 
 async function markAsSick(name) {
-    const { error } = await supabaseClient
+    const {data, fetchError} = await supabaseClient
+        .from('users')
+        .select('dabba_name')
+        .eq('name', name)
+    if (fetchError) {
+        console.error('Error getting dabba name:', fetchError);
+        return;
+    }
+
+    const { updateError } = await supabaseClient
         .from('orders')
         .update({ sick: true })
-        .eq('name', name);
-
-    if (error) {
-        console.error('Error marking person as sick:', error);
+        .eq('name', data[0].dabba_name);
+    if (updateError) {
+        console.error('Error marking person as sick:', updateError);
         return;
     }
 
     fetchSickPeople();
 }
 
-function takeLunch(person, takenBy, buttonElement, confirmationElement) {
+function takeLunch(order, takenBy, buttonElement, confirmationElement) {
     return async () => {
         if (confirmationElement.innerHTML === "") {
             buttonElement.innerText = "Are you sure?"
@@ -141,8 +141,8 @@ function takeLunch(person, takenBy, buttonElement, confirmationElement) {
             const { data, error } = await supabaseClient
                 .from('orders')
                 .select('taken_by')
-                .eq('name', person.name)
-                .single(); // Fetch only one record
+                .eq('name', order.dabba_name)
+                .single();
 
             if (error) {
                 console.error('Error checking if menu has been taken:', error);
@@ -150,7 +150,6 @@ function takeLunch(person, takenBy, buttonElement, confirmationElement) {
             }
 
             if (data.taken_by !== null) {
-                console.log("This menu has already been taken.");
                 confirmationElement.innerHTML = "Already taken! Refreshing..."
                 setTimeout(async () => {
                     await fetchSickPeople();
@@ -159,7 +158,7 @@ function takeLunch(person, takenBy, buttonElement, confirmationElement) {
                 const { updateError } = await supabaseClient
                     .from('orders')
                     .update({ taken: true, taken_by: takenBy })
-                    .eq('name', person.name);
+                    .eq('name', order.dabba_name);
 
                 if (updateError) {
                     console.error('Error marking lunch as taken:', updateError);
@@ -180,27 +179,44 @@ function clearSickTableContent() {
     }
 }
 
-async function populateNameSuggestions() {
-    async function fetchNames() {
-        const { data, error } = await supabaseClient
-            .from('orders')
-            .select('name')
-            .eq("sick", false)
-            .in('name', merklePeople);
-
-        if (error) {
-            console.error('Error fetching names:', error);
-            return [];
-        }
-        return data.map(person => person.name); // Extract names
+async function fetchOrders(sick) {
+    const {data: ordersData, ordersError} = await supabaseClient
+        .from('orders')
+        .select('name, menu, taken, taken_by')
+        .eq("sick", sick);
+    if (ordersError) {
+        console.error('Error fetching names from orders:', ordersError);
+        return [];
     }
 
-    const names = await fetchNames();
+    const {data: usersData, usersError} = await supabaseClient
+        .from('users')
+        .select('name, dabba_name')
+        .not('dabba_name', 'is', null);
+    if (ordersError) {
+        console.error('Error fetching names from users:', usersError);
+        return [];
+    }
+
+    return ordersData.map(order => {
+        const user = usersData.find(user => user.dabba_name === order.name);
+        return {
+            ...order,
+            full_name: user ? user.name : null,
+            dabba_name: user ? user.dabba_name : null,
+        };
+    })
+        .filter(order => order.full_name !== null && order.dabba_name !== null)
+        .sort((a, b) => a.full_name.localeCompare(b.full_name))
+}
+
+async function populateNameSuggestions() {
+    const orders = await fetchOrders(false);
     const datalist = document.getElementById('nameSuggestions');
     datalist.innerHTML = '';
-    names.forEach(name => {
+    orders.forEach(order => {
         const option = document.createElement('option');
-        option.value = name;
+        option.value = order.full_name;
         datalist.appendChild(option);
     });
 }

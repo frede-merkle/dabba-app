@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merkle lunch app</title>
+    <title>Dentsu Aarhus Lunch</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div id="setup-phase">
-    <h1>Merkle Lunch App</h1>
+    <h2>Dentsu Aarhus Lunch</h2>
     <p>Please enter your full name to get started.</p>
     <div>
         <p id="errorMessage" style="color: red; display: none;"></p>
@@ -19,7 +20,7 @@
 </div>
 
 <div id="main-content" style="display: none;">
-    <h1>Merkle Lunch App</h1>
+    <h2>Dentsu Aarhus Lunch</h2>
     <div>
         <input type="text" id="nameInput" list="nameSuggestions" placeholder="Enter name"/>
         <datalist id="nameSuggestions">
@@ -37,6 +38,7 @@
             <th>Remove</th>
         </tr>
         </thead>
+        <div id="table-placeholder">No one has been marked as OOO yet..</div>
         <tbody id="sick-table-body">
         <tr>
             <td id="name">
@@ -55,11 +57,18 @@
         </tbody>
     </table>
     <div id="description">
-        <h2>Instructions:</h2>
-        <p>1. If a person is out-of-office (OOO) add them to the table using <strong>"Mark as OOO"</strong>.</p>
-        <p>2. If the person ordered a lunch, the table will show which one and you can reserve it by clicking <strong>"Take lunch"</strong>.</p>
-        <p>3. If by some reason a person is not OOO anyway, please click the red cross to remove them from the table.</p>
-        <p>4. Before removing them, make sure no one reserved their lunch.</p>
+        <h3>Instructions:</h3> <p>1. To mark someone as out-of-office (OOO), enter a name and click <strong>Mark as OOO</strong>.</p>
+        <p>2. If they ordered lunch, the table shows the order. Click <strong>Take lunch</strong> to reserve it.</p>
+        <p>3. If someone is not OOO, remove them using the red cross.</p>
+        <p>4. Ensure no one has reserved their lunch before removing them.</p>
+        <h3>Other:</h3>
+        <p><strong>My name is not in the dropdown?</strong> Only people who ordered lunch appear in the dropdown.
+            Some people are excluded for technical reasons, like when two people share the same name in the Dabba app (e.g., Magnus K.)
+            and we can't differentiate their orders.</p>
+        <p><strong>Can other people see my actions?</strong> If you mark someone as OOO, they will show up as OOO for everyone.
+            If you reserve a lunch, everyone will see you reserved it.</p>
+        <p><strong>When is the list updated?</strong> Dabba sends an email at around 8.00 each morning, which will trigger everything to reset.</p>
+        <p><strong>I would like my name to not show up.</strong> Sure, send me an email or a teams message and I'll remove you (frederik.jorgensen@merkle.com).</p>
     </div>
     <div id="disclaimer">
         This app is not affiliated with Dabba.
