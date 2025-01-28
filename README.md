@@ -1,4 +1,4 @@
-# Merkle Lunch App Chrome Extension
+# Dentsu Aarhus Lunch Chrome Extension
 
 ## Introduction
 This extension was developed to solve a common problem in our office:
