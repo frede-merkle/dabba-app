@@ -9,6 +9,18 @@ interface Order {
   taken?: boolean
 }
 
+const orderTypes = [
+  "den vegetariske \\(grøn\\)",
+  "den veganske \\(rød\\) \\(%gluten %laktose\\)",
+  "den klassiske \\(orange\\)",
+  "den varierende \\(lilla\\)",
+  "vegetar salat",
+  "kød sandwich",
+  "protein salat",
+  "vegetar sandwich",
+  "håndmadder"
+]
+
 validateEnvironment();
 const supabase = initSupabase()
 
@@ -16,7 +28,7 @@ serve(async (req: Request): Promise<Response> => {
   try {
     const email: IncomingMail = await req.json()
     if (!email.attachments?.[0]?.content) {
-      throw createError('NO_ATTACHMENT', 'No PDF attachment found in email')
+     throw createError('NO_ATTACHMENT', 'No PDF attachment found in email')
     }
 
     const url = await getAttachmentURLFromMail(email)
@@ -98,7 +110,7 @@ function parseJson(data: string): Order[] {
   const normalizedData = data.toLowerCase()
 
   // Find orders
-  let orders = normalizedData
+  const orders = normalizedData
     .split("kuverter")
     .slice(2)
     .join('')
@@ -107,34 +119,20 @@ function parseJson(data: string): Order[] {
   if (!orders) {
     throw createError('PARSE_ERROR', 'No orders found in document')
   }
+  console.log("Orders: ", orders)
 
-  // Find names and corresponding orders
-  const menuTypes = [
-    "den vegetariske \\(grøn\\)",
-    "den veganske \\(rød\\) \\(%gluten %laktose\\)",
-    "den klassiske \\(orange\\)",
-    "den varierende \\(lilla\\)",
-    "vegetar salat",
-    "kød sandwich",
-    "protein salat",
-    "vegetar sandwich",
-    "håndmadder"
-  ]
-  const possibleOrdersRegex = new RegExp(`(${menuTypes.join("|")})`, "g")
 
-  const ordersWithoutAmount = orders
-    .replaceAll(/\d+x /g, "")
+  // Remove admin orders, quantities and extra stuff like bread
+  const cleanedOrders = cleanOrdersString(orders, orderTypes)
+  console.log("cleanedOrders: ", cleanedOrders)
 
-  const ordersWithoutExtraOrders = ordersWithoutAmount
-    .replaceAll("abonnement", "")
-    .replaceAll("surdejsbrød", "")
-    .replaceAll("friskbagt", "")
-    .replaceAll("rugbrød", "")
-
-  const namesAndMenus = ordersWithoutExtraOrders
+  // Create list of names and orders
+  const possibleOrdersRegex = new RegExp(`(${orderTypes.join("|")})`, "g")
+  const namesAndMenus = cleanedOrders
     .split(possibleOrdersRegex)
     .filter(e => e !== undefined && e !== "")
     .map(e => e.trim())
+  console.log("namesAndMenus: ", namesAndMenus)
 
   // Structure names and orders
   const listOfMenus: Order[] = []
@@ -144,7 +142,7 @@ function parseJson(data: string): Order[] {
     if (!name || !menu) continue
 
     if (name.startsWith(",")) name = name.substring(2) // Some names start with ", "
-    if (!listOfMenus.some(e => e.name === name)) {
+    if (!listOfMenus.some(e => e.name === name) && name !== "admin") {
       const cleanName = name.replaceAll("admin ", "") // Some names includes "admin "
       listOfMenus.push({name: cleanName, menu: menu})
     }
@@ -153,7 +151,33 @@ function parseJson(data: string): Order[] {
   if (listOfMenus.length === 0) {
     throw createError('PARSE_ERROR', 'No valid orders found after parsing')
   }
+
+  console.log("listOfMenus: ", listOfMenus)
   return listOfMenus
+}
+
+function cleanOrdersString(inputString: string, orderTypes: string[]) {
+  let result = inputString.replace(/\d+x\s+/g, "");
+
+  // Remove adjacent orders (keep the first one)
+  const orderPattern = orderTypes.join("|");
+  const adjacentOrdersRegex = new RegExp(`(${orderPattern})\\s+(${orderPattern})`, "g");
+  let previousResult;
+  do {
+    previousResult = result;
+    result = result.replace(adjacentOrdersRegex, "$1");
+  } while (result !== previousResult);
+
+  // Remove beginning orders
+  const startingOrdersRegex = new RegExp(`^(${orderPattern})\\s+`, "");
+  result = result.replace(startingOrdersRegex, "");
+
+  return result
+    .trim()
+    .replaceAll("abonnement", "")
+    .replaceAll("surdejsbrød", "")
+    .replaceAll("friskbagt", "")
+    .replaceAll("rugbrød", "")
 }
 
 async function replaceOrdersTableInDatabase(orders: Order[]) {
