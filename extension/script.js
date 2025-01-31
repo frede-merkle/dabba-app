@@ -3,7 +3,6 @@ const SUPABASE_KEY = 'supabase-anon-key';
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const setupButton = document.getElementById('setupButton');
-const userNameInput = document.getElementById('userNameInput');
 const setupPhase = document.getElementById('setup-phase');
 const mainContent = document.getElementById('main-content');
 const maintenanceContainer = document.getElementById('maintenance-container');
@@ -11,11 +10,13 @@ const maintenanceReason = document.getElementById('maintenance-reason');
 const errorMessage = document.getElementById('errorMessage');
 const usernameDisplay = document.getElementById('username-display');
 const currentUserElement = document.getElementById('current-username');
-const nameInput = document.getElementById('nameInput');
 const submitButton = document.getElementById('submitButton');
 const tablePlaceholder = document.getElementById("table-placeholder");
 const sickTable = document.getElementById("sick-table");
-const nameSuggestionsList = document.getElementById('nameSuggestions');
+const userNameInput = document.getElementById('userNameInput');
+const userNameSuggestionsList = document.getElementById('userNameSuggestions');
+const markSickInput = document.getElementById('markSickInput');
+const markSickSuggestionsList = document.getElementById('markSickSuggestions');
 
 let currentUserName = getCookie('userName') || "";
 
@@ -43,9 +44,10 @@ async function init() {
         currentUserElement.textContent = currentUserName;
         maintenanceContainer.style.display = 'none';
 
-        populateNameSuggestions();
+        populateMarkSickSuggestions();
         fetchSickPeople();
     } else {
+        populateUserNameSuggestions();
         setupPhase.style.display = 'block';
         maintenanceContainer.style.display = 'none';
     }
@@ -103,7 +105,7 @@ async function fetchSickPeople() {
         const row = tbody.insertRow();
 
         const nameCell = row.insertCell();
-        nameCell.textContent = order.full_name;
+        nameCell.textContent = `${order.full_name} (${order.company})`;
         const orderCell = row.insertCell();
         orderCell.textContent = `${order.menu} ${getOrderIcon(order.menu)}`;
 
@@ -134,7 +136,7 @@ async function fetchSickPeople() {
                 console.error('Error removing person from sick list:', error);
             } else {
                 await fetchSickPeople();
-                await populateNameSuggestions();
+                await populateMarkSickSuggestions();
             }
         };
         removeCell.appendChild(removeIcon);
@@ -153,7 +155,7 @@ async function markAsSick(name) {
 
     const { updateError } = await supabaseClient
         .from('orders')
-        .update({ sick: true })
+        .update({ sick: true, marked_by: currentUserName })
         .eq('name', data[0].dabba_name);
     if (updateError) {
         console.error('Error marking person as sick:', updateError);
@@ -175,10 +177,10 @@ async function fetchOrders(sick) {
 
     const {data: usersData, usersError} = await supabaseClient
         .from('users')
-        .select('name, dabba_name')
+        .select('name, dabba_name, company')
         .not('dabba_name', 'is', null);
     if (ordersError) {
-        console.error('Error fetching names from users:', usersError);
+        console.error('Error fetching names and dabba_names from users:', usersError);
         return [];
     }
 
@@ -188,19 +190,44 @@ async function fetchOrders(sick) {
             ...order,
             full_name: user ? user.name : null,
             dabba_name: user ? user.dabba_name : null,
+            company: user ? user.company : null,
         };
     })
-        .filter(order => order.full_name !== null && order.dabba_name !== null)
+        .filter(order => order.full_name !== null && order.dabba_name !== null && order.company !== null)
         .sort((a, b) => a.full_name.localeCompare(b.full_name))
 }
 
-async function populateNameSuggestions() {
+async function fetchUsers() {
+    const {data, errors} = await supabaseClient
+        .from('users')
+        .select('name, company')
+    if (errors) {
+        console.error('Error fetching names and companies from users:', errors);
+        return [];
+    }
+
+    return data.map(user => {
+        return `${user.name} (${user.company})`;
+    })
+}
+
+async function populateUserNameSuggestions() {
+    const users = await fetchUsers();
+    userNameSuggestionsList.innerHTML = '';
+    users.forEach(user => {
+        const option = document.createElement('option');
+        option.value = user;
+        userNameSuggestionsList.appendChild(option);
+    });
+}
+
+async function populateMarkSickSuggestions() {
     const orders = await fetchOrders(false);
-    nameSuggestionsList.innerHTML = '';
+    markSickSuggestionsList.innerHTML = '';
     orders.forEach(order => {
         const option = document.createElement('option');
-        option.value = order.full_name;
-        nameSuggestionsList.appendChild(option);
+        option.value = `${order.full_name} (${order.company})`
+        markSickSuggestionsList.appendChild(option);
     });
 }
 
@@ -250,9 +277,9 @@ function getCookie(name) {
 // Event listeners
 
 setupButton.addEventListener('click', () => {
+    const possibleUserNames = Array.from(userNameSuggestionsList.getElementsByTagName('option')).map(option => option.value);
     const userName = userNameInput.value.trim();
-
-    if (userName) {
+    if (userName && possibleUserNames.includes(userName)) {
         currentUserName = userName;
         setCookie('userName', userName, 30);
 
@@ -261,26 +288,29 @@ setupButton.addEventListener('click', () => {
         usernameDisplay.style.display = 'block';
         currentUserElement.textContent = currentUserName;
 
-        populateNameSuggestions();
+        populateMarkSickSuggestions();
         fetchSickPeople();
     } else {
-        errorMessage.textContent = 'Please enter your name to continue.';
+        errorMessage.textContent = 'Please pick a name from the list.';
         errorMessage.style.display = 'block';        }
 });
 
 submitButton.addEventListener('click', async () => {
-    const possibleNames = Array.from(nameSuggestionsList.getElementsByTagName('option')).map(option => option.value);
-    const name = nameInput.value.trim();
-    if (name && possibleNames.includes(name)) {
+    const possibleNames = Array.from(markSickSuggestionsList.getElementsByTagName('option')).map(option => option.value);
+    const nameAndCompany = markSickInput.value.trim();
+    if (nameAndCompany && possibleNames.includes(nameAndCompany)) {
+        const name = markSickInput.value.split("(")[0].trim();
         markAsSick(name).then(() => {
-            populateNameSuggestions();
+            populateMarkSickSuggestions();
         })
-        nameInput.value = '';
+        markSickInput.value = '';
     }
 });
 
 usernameDisplay.addEventListener('click', () => {
+    userNameInput.value = "";
     setCookie('userName', '', -1);
     mainContent.style.display = 'none';
     setupPhase.style.display = 'block';
+    populateUserNameSuggestions();
 });
