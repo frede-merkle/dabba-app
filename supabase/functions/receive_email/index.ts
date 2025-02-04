@@ -21,6 +21,13 @@ const orderTypes = [
   "håndmadder"
 ]
 
+// APYHUB might misparse the "ø", hence these types are used
+const misparsedOrderTypes = [
+  "den vegetariske \\(gr\n n\\)",
+  "den veganske \\(r\n d\\) \\(%gluten %laktose\\)",
+  "k\n d sandwich",
+]
+
 validateEnvironment();
 const supabase = initSupabase()
 
@@ -111,23 +118,25 @@ function parseJson(data: string): Order[] {
 
   // Find orders
   const orders = normalizedData
-    .split("kuverter")
+    .split("min frokost")
     .slice(2)
     .join('')
     .split("total")[0]
     .trim()
+
+  console.log("Orders: ", orders)
   if (!orders) {
     throw createError('PARSE_ERROR', 'No orders found in document')
   }
-  console.log("Orders: ", orders)
 
 
   // Remove admin orders, quantities and extra stuff like bread
-  const cleanedOrders = cleanOrdersString(orders, orderTypes)
+  const correctAndWrongOrderTypes = [...orderTypes, ...misparsedOrderTypes]
+  const cleanedOrders = cleanOrdersString(orders, correctAndWrongOrderTypes)
   console.log("cleanedOrders: ", cleanedOrders)
 
   // Create list of names and orders
-  const possibleOrdersRegex = new RegExp(`(${orderTypes.join("|")})`, "g")
+  const possibleOrdersRegex = new RegExp(`(${correctAndWrongOrderTypes.join("|")})`, "g")
   const namesAndMenus = cleanedOrders
     .split(possibleOrdersRegex)
     .filter(e => e !== undefined && e !== "")
